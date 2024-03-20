@@ -16,4 +16,6 @@ This short code takes a Frequencies.dat file (calculated by Terachem vibrational
 The main obstacle is that Frequencies.dat stores the frequencies in columns, but vdata.txt needs them orgainized into rows.
 
 ## xyz_to_tinker.py
-This short code converts a .xyz input file into a Tinker .txyz file using a reference with the same atom ordering. The .txyz file format uses the same coordinates as .xyz, except that it explicitly lists atom connectivity and requires labeling of atom types. Existing molecular file conversion software can easily convert .txyz to .xyz, but it is not as suited for converting in the opposite direction when using custom AMOEBA force fields with unique atom types and classes.
+This short code converts a .xyz input file into a Tinker .txyz file using a reference with the same atom ordering. (Note that Tinker files often use the .xyz extension even though they differ from traditional XYZ files, but I've found it useful to include a 't' in the extension when using both to help distinguish them)
+
+The .txyz file format uses the same coordinates as .xyz, except that it explicitly lists atom connectivity and requires labeling of atom types. Existing molecular file conversion software can easily convert .txyz to .xyz, but it is not as suited for converting in the opposite direction when using custom AMOEBA force fields with uniquely indexed atom types and classes.
