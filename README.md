@@ -21,7 +21,7 @@ for urea. Lower left is an average distance matrix of the 100 least energeticall
 frames between AMOEBA-Tinker and AMOEBA-OpenMM. Before averaging, each frame
 had the 0th difference matrix subtracted (to highlight deviation from the planar starting
 point). Lower right is the same as lower left, except using the 100 most energetically different
-MD frames. All distances in \AA ˚Angstrom, redder color indicates a larger distance.
+MD frames. All distances in Ångstrom, redder color indicates a larger distance.
 
 ## fb_parameter_adjust.py
 This code prepares AMOEBA and OpenMM force field files for usage within ForceBalance (FB). FB is a force field optimizer and requires placement of certain keywords and information to identify targets.
