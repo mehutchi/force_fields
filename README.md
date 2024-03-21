@@ -29,7 +29,24 @@ The next plot (obtained from a different code) illustrates the frame-by-frame en
 
 ![diff_vs_frame_totalE](https://github.com/mehutchi/force_fields/assets/20996215/b70bc041-2b25-465f-ae9a-45707e9fc88c)
 
-This figure illustrates energy differences far too great for two supposedly equal force fields.
+This figure illustrates energy differences far too great for two supposedly equal force fields. The maximum differences between Tinker and OpenMM total energies eclipsed 20 kJ/mol, with a percent difference of up to 11%.
+
+It was then found that the out-of-plane bonding energy between Tinker and OpenMM was in disagreement. This was difficult to uncover, because in early iterations of the Tinker force field the out-of-plane parameters were excluded and the capability of converting them to OpenMM was commented out of the conversion code. That, and the fact that the early, oft-referenced frames experienced no out-of-plane bending hid the issue for a time.
+
+![diff_angle-inpaf_ALL](https://github.com/mehutchi/force_fields/assets/20996215/a1ebf2be-12b3-4a71-96c7-7d5013bc5cb8)
+
+Tinker and OpenMM angle energy components in kJ/mol vs MD frame. The Tinker angle energy is in blue, and the OpenMM angle energy is split between angle (green)
+and in-plane-angle-force (orange). 
+
+The solution we found to this was to adjust the Python script used for testing OpenMM energies to remove the automatically generated out-of-plane-bending energies and re-insert them as traditional angle energies.
+
+![diff_vs_frame_tot_E_FIXED](https://github.com/mehutchi/force_fields/assets/20996215/af60d030-aa89-48b5-8739-25672c9ecb12)
+
+Tinker minus OpenMM total energy in kJ/mol vs MD frame after applying the OpenMM fix in the testing script. The magnitude of the energy differences matches the expected behavior of the two force fields.  The maximum energy differences are around ± 0.0006 kJ/mol with a percent difference of 0.0003%. This is an acceptable energy difference between AMOEBA-Tinker-urea and AMOEBA-OpenMM-urea for later FB usage.
+
+This final plot shows the frame-by-frame energy differences for each energy component.
+
+![diff_vs_frame_ALL_FIXED](https://github.com/mehutchi/force_fields/assets/20996215/98b0b6eb-089d-417a-95cb-ccc65cbdd74f)
 
 ## fb_parameter_adjust.py
 This code prepares AMOEBA and OpenMM force field files for usage within ForceBalance (FB). FB is a force field optimizer and requires placement of certain keywords and information to identify targets.
